@@ -23,7 +23,8 @@ public class Property {
 //    @JsonIgnore
 
 //    @JsonBackReference
-@JsonManagedReference
+//@JsonManagedReference
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER,optional = true)
     @JoinColumn(name = "owner_id",referencedColumnName = "ownerId",nullable = true )
     public Owner owner;

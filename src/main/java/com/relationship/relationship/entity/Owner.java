@@ -26,7 +26,7 @@ public class Owner {
     private Car car;
 
 //    working......................
-    @JsonIgnore
+//    @JsonIgnore
 //    @JsonManagedReference
     @OneToMany(mappedBy = "owner" ,fetch = FetchType.EAGER,cascade = CascadeType.PERSIST, targetEntity = Property.class)
     private Set<Property> properties;

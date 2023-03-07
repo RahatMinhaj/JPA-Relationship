@@ -57,15 +57,17 @@ public class OwnerController {
 
 //return ownerRepo.findAll();
 
-
         List<Owner> lis = ownerRepo.findAll();
         List<Owner> ls = new ArrayList<>();
 
         for (Owner d:lis) {
-            if (d.getOwnerId()!=null){
+            if (d.getProperties()!=null){
                 System.out.println("Null Dep");
 //                d.setDepartment(null);
-                d.setProperties(null);
+//                for (:
+//                     ) {
+//                }
+//                d.setProperties(null);
                 ls.add(d);
             }
 
@@ -75,5 +77,29 @@ public class OwnerController {
         return ls;
     }
 
+
+    @GetMapping("/propertyList")
+    public List<Property> getProperties(){
+
+//return ownerRepo.findAll();
+
+        List<Property> lis = propRepo.findAll();
+        List<Property> ls = new ArrayList<>();
+
+        for (Property d:lis) {
+
+            if (d.getOwner()!=null){
+                System.out.println("Null Dep");
+                Owner ow = new Owner();
+                ow=d.getOwner();
+                ow.setProperties(null);
+                d.setOwner(ow);
+            }
+
+        }
+
+
+        return lis;
+    }
 
 }
