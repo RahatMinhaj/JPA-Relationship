@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class OwnerController {
@@ -62,15 +64,15 @@ public class OwnerController {
 
         for (Owner d:lis) {
             if (d.getProperties()!=null){
-                System.out.println("Null Dep");
-//                d.setDepartment(null);
-//                for (:
-//                     ) {
-//                }
-//                d.setProperties(null);
-                ls.add(d);
+                Set<Property> pLs = new HashSet<>();
+                for (Property p:d.getProperties()
+                     ) {
+                    p.setOwner(null);
+                    pLs.add(p);
+                }
+                d.setProperties(pLs);
             }
-
+            ls.add(d);
         }
 
 
@@ -87,19 +89,12 @@ public class OwnerController {
         List<Property> ls = new ArrayList<>();
 
         for (Property d:lis) {
-
+//            List<Owner> onLs = new ArrayList<>();
             if (d.getOwner()!=null){
-                System.out.println("Null Dep");
-                Owner ow = new Owner();
-                ow=d.getOwner();
-                ow.setProperties(null);
-                d.setOwner(ow);
+                d.getOwner().setProperties(null);
             }
-
+          ls.add(d);
         }
-
-
-        return lis;
+        return ls;
     }
-
 }
